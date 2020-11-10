@@ -7,6 +7,8 @@ namespace DataServiceLib
         IList<Category> GetCategories();
         Category GetCategory(int id);
         IList<Product> GetProducts();
+        IList<title_basics> GetTitles();
+        IList<Users> GetUsers();
         Product GetProduct(int id);
         void CreateCategory(Category category);
         bool UpdateCategory(Category category);

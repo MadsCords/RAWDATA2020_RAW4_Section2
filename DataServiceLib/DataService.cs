@@ -38,6 +38,16 @@ namespace DataServiceLib
             return _categories;
         }
 
+        public IList<title_basics> GetTitles()
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.title_basics.ToList();
+        }
+        public IList<Users> GetUsers()
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.Users.ToList();
+        }
         public Category GetCategory(int id)
         {
             return _categories.FirstOrDefault(x => x.Id == id);

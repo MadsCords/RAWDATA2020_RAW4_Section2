@@ -7,11 +7,12 @@ using AutoMapper;
 using DataServiceLib;
 using Microsoft.AspNetCore.Mvc;
 using WebService.Models;
+using WebService.Models.Profiles;
 
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/categories")]
+    [Route("api/Titles")]
     public class CategoriesController : ControllerBase
     {
         IDataService _dataService;
@@ -24,14 +25,14 @@ namespace WebService.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCategories()
+        public IActionResult GetTitle()
         {
             
-            var categories = _dataService.GetCategories();
-
-            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categories));
+            var Titles = _dataService.GetTitles();
+            
+            return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
         }
-
+    
         [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
