@@ -12,44 +12,44 @@ using WebService.Models.Profiles;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/Titles")]
-    public class CategoriesController : ControllerBase
+    [Route("api/NameBasics")]
+    public class NameBasicsController : ControllerBase
     {
         IDataService _dataService;
         private readonly IMapper _mapper;
 
-        public CategoriesController(IDataService dataService, IMapper mapper)
+        public NameBasicsController(IDataService dataService, IMapper mapper)
         {
             _dataService = dataService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetTitle()
+        public IActionResult GetNames()
         {
-            
-            var Titles = _dataService.GetTitles();
-            
-            return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
+
+            var Names = _dataService.GetNames();
+
+            return Ok(_mapper.Map<IEnumerable<NameBasicsDto>>(Names));
         }
-    
+
         [HttpGet("{id}")]
-        public IActionResult GetCategory(int id)
+        public IActionResult GetNameId(int id)
         {
-            var category = _dataService.GetCategory(id);
-            if (category == null)
+            var name = _dataService.GetNameId(id);
+            if (name == null)
             {
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<CategoryDto>(category));
+            return Ok(_mapper.Map<NameBasicsDto>(name));
         }
 
         [HttpPost]
         public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
         {
             var category = _mapper.Map<Category>(categoryOrUpdateDto);
-            
+
             _dataService.CreateCategory(category);
 
             return Created("", category);

@@ -15,5 +15,28 @@ namespace WebService.Models.Profiles
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryForCreationOrUpdateDto, Category>();
         }
+       
+    }
+    public class TitleProfile : Profile
+    {
+        public TitleProfile()
+        {
+            CreateMap<Title_Basics, TitleDto>();
+        }
+    }
+    public class UserProfile : Profile
+    {
+        public UserProfile()
+        {
+            CreateMap<Users, UsersDto>();
+            CreateMap<UserForCreationDto, Users>();
+        }
+    }
+    public class NameProfile : Profile
+    {
+        public NameProfile()
+        {
+            CreateMap<Name_Basics, NameBasicsDto>();
+        }
     }
 }

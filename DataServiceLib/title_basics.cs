@@ -3,11 +3,21 @@
 
 namespace DataServiceLib
 {
-    public class title_basics
+    public class Title_Basics
     {
         [Key]
-        public string tconst { get; set; }
-        public string primarytitle { get; set; } //Skal sættes til column navnet i db
-        public string titletype { get; set; } //Skal sættes til column navnet i db  
+        public string Tconst { get; set; }
+        public string TitleType { get; set; }
+        public string PrimaryTitle { get; set; }
+        public string OriginalTitle { get; set; }
+        public bool IsAdult { get; set; }
+        public string StartYear { get; set; }
+        public string EndYear { get; set; }
+        public string RuntimeMinutes { get; set; }
+        public string Poster { get; set; }
+        public string Awards { get; set; }
+        public string Plot { get; set; }
+
     }
+
 }

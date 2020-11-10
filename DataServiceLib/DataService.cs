@@ -38,21 +38,40 @@ namespace DataServiceLib
             return _categories;
         }
 
-        public IList<title_basics> GetTitles()
+        public IList<Title_Basics> GetTitles()
         {
             var ctx = new ImdbDatabase();
-            return ctx.title_basics.ToList();
+            return ctx.Title_basics.ToList();
         }
         public IList<Users> GetUsers()
         {
             var ctx = new ImdbDatabase();
             return ctx.Users.ToList();
         }
+        public IList<Users> GetUserId(int id)
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.UserId.ToList();
+        }
+        public IList<Name_Basics> GetNames()
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.Names.ToList();
+        }
+        public IList<Name_Basics> GetNameId(int id)
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.NameId.ToList();
+        }
         public Category GetCategory(int id)
         {
             return _categories.FirstOrDefault(x => x.Id == id);
         }
 
+        public void CreateUser(Users user)
+        {
+            //var maxId = Users.Max(x => x.Id); --- Skal lige have hjælp til hvordan jeg kalder mit IList<Users> liste.
+        } 
         public void CreateCategory(Category category)
         {
             var maxId = _categories.Max(x => x.Id);

@@ -9,15 +9,19 @@ namespace DataServiceLib
 {
     public class ImdbDatabase : DbContext
     {
- 
-       // public static readonly ILoggerFactory MyLoggerFactory
-         //   = LoggerFactory.Create(builder => { builder.AddConsole(); });
-        	
-       
+
+        // public static readonly ILoggerFactory MyLoggerFactory
+        //   = LoggerFactory.Create(builder => { builder.AddConsole(); });
+
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<title_basics> title_basics { get; set; }
+        public DbSet<Title_Basics> Title_basics { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Users> UserId { get; set; }
+        public DbSet<Name_Basics> Names { get; set; }
+        public DbSet<Name_Basics> NameId { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,9 +31,10 @@ namespace DataServiceLib
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            NewMethod(modelBuilder);
-
-
+            TitlesModel(modelBuilder);
+            UsersModel(modelBuilder);
+            NamesModel(modelBuilder);
+            UsersSearchModel(modelBuilder);
             /*modelBuilder.Entity<Category>().ToTable("categories");
             modelBuilder.Entity<Category>().Property(x => x.Id).HasColumnName("categoryid");
             modelBuilder.Entity<Category>().Property(x => x.Name).HasColumnName("categoryname");
@@ -41,10 +46,47 @@ namespace DataServiceLib
             modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");*/
         }
 
-        private static void NewMethod(ModelBuilder modelBuilder)
+        private static void TitlesModel(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<title_basics>().ToTable("title_basics");
-            modelBuilder.Entity<title_basics>().Property(x => x.tconst).HasColumnName("tconst");
+            modelBuilder.Entity<Title_Basics>().ToTable("title_basics");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.Tconst).HasColumnName("tconst");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.TitleType).HasColumnName("titletype");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.PrimaryTitle).HasColumnName("primarytitle");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.OriginalTitle).HasColumnName("originaltitle");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.IsAdult).HasColumnName("isadult");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.StartYear).HasColumnName("startyear");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.EndYear).HasColumnName("endyear");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.RuntimeMinutes).HasColumnName("runtimeminutes");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.Poster).HasColumnName("poster");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.Awards).HasColumnName("awards");
+            modelBuilder.Entity<Title_Basics>().Property(x => x.Plot).HasColumnName("plot");
+
+        }
+
+        private static void UsersModel(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Users>().ToTable("users");
+            modelBuilder.Entity<Users>().Property(x => x.Userid).HasColumnName("userid");
+            modelBuilder.Entity<Users>().Property(x => x.Username).HasColumnName("username");
+            modelBuilder.Entity<Users>().Property(x => x.Username).HasColumnName("password");
+            modelBuilder.Entity<Users>().Property(x => x.Firstname).HasColumnName("firstname");
+            modelBuilder.Entity<Users>().Property(x => x.Lastname).HasColumnName("lastname");
+            modelBuilder.Entity<Users>().Property(x => x.Birthyear).HasColumnName("birthyear");
+        }
+
+        private static void NamesModel(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Name_Basics>().Property(x => x.Nconst).HasColumnName("nconst");
+            modelBuilder.Entity<Name_Basics>().Property(x => x.PrimaryName).HasColumnName("nconst");
+            modelBuilder.Entity<Name_Basics>().Property(x => x.Birthyear).HasColumnName("birthyear");
+            modelBuilder.Entity<Name_Basics>().Property(x => x.Deathyear).HasColumnName("deathyear");
+        }
+
+        private static void UsersSearchModel(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Users_SearchHistory>().Property(x => x.Userid).HasColumnName("userid");
+            modelBuilder.Entity<Users_SearchHistory>().Property(x => x.SearchEntry).HasColumnName("searchentry");
+            modelBuilder.Entity<Users_SearchHistory>().Property(x => x.SearchDate).HasColumnName("searchdate");
         }
     }
 
