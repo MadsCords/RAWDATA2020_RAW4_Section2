@@ -22,6 +22,7 @@ namespace DataServiceLib
         public DbSet<Name_Basics> Names { get; set; }
         //public DbSet<Name_Basics> NameId { get; set; }
         public DbSet<SearchTitleFunction> SearchTitle { get; set; }
+        public DbSet<StructuredSearchFunction> StructuredSearch { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -96,6 +97,12 @@ namespace DataServiceLib
             modelBuilder.Entity<SearchTitleFunction>().HasNoKey();
             modelBuilder.Entity<SearchTitleFunction>().Property(x => x.Tconst).HasColumnName("tconst");
             modelBuilder.Entity<SearchTitleFunction>().Property(x => x.PrimaryTitle).HasColumnName("primarytitle");
+
+            modelBuilder.Entity<StructuredSearchFunction>().HasNoKey();
+            modelBuilder.Entity<StructuredSearchFunction>().Property(x => x.EntryTitle).HasColumnName("primarytitle");
+            modelBuilder.Entity<StructuredSearchFunction>().Property(x => x.EntryPlot).HasColumnName("plot");
+            modelBuilder.Entity<StructuredSearchFunction>().Property(x => x.EntryCharacters).HasColumnName("characters");
+            modelBuilder.Entity<StructuredSearchFunction>().Property(x => x.EntryName).HasColumnName("primaryname");
         }
     }
 

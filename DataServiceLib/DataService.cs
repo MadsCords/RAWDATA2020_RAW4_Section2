@@ -80,6 +80,17 @@ namespace DataServiceLib
             //}
             return result.ToList();
         }
+
+        public IList<StructuredSearchFunction> StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname)
+        {
+            var ctx = new ImdbDatabase();
+            var result = ctx.StructuredSearch.FromSqlInterpolated($"select * from structured_string_search({userid},{entrytitle},{entryplot},{entrycharacters},{entryname})");
+            //foreach (var searchTitle in result)
+            //{
+            //    Console.WriteLine($"{searchTitle.Tconst}, {searchTitle.PrimaryTitle}");
+            //}
+            return result.ToList();
+        }
         //public void CreateCategory(Category category)
         //{
         //    var maxId = _categories.Max(x => x.Id);
