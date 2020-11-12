@@ -1,4 +1,4 @@
-﻿using DataServiceLib;
+﻿//using DataServiceLib;
 using System;
 
 namespace TestApp
@@ -8,8 +8,8 @@ namespace TestApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            IDataService ds = new DataService();
-            Console.WriteLine(ds.GetTitles().Count);
+            //IDataService ds = new DataService();
+            //Console.WriteLine(ds.GetTitles().Count);
         }
     }
 }

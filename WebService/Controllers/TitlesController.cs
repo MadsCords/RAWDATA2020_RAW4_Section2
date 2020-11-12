@@ -33,51 +33,51 @@ namespace WebService.Controllers
             return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
         }
     
-        [HttpGet("{id}")]
-        public IActionResult GetCategory(int id)
-        {
-            var category = _dataService.GetCategory(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+        //[HttpGet("{id}")]
+        //public IActionResult GetCategory(int id)
+        //{
+        //    var category = _dataService.GetCategory(id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(_mapper.Map<CategoryDto>(category));
-        }
+        //    return Ok(_mapper.Map<CategoryDto>(category));
+        //}
 
-        [HttpPost]
-        public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        {
-            var category = _mapper.Map<Category>(categoryOrUpdateDto);
+        //[HttpPost]
+        //public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
+        //{
+        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
             
-            _dataService.CreateCategory(category);
+        //    _dataService.CreateCategory(category);
 
-            return Created("", category);
-        }
+        //    return Created("", category);
+        //}
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateCategory(int id, CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        {
-            var category = _mapper.Map<Category>(categoryOrUpdateDto);
+        //[HttpPut("{id}")]
+        //public IActionResult UpdateCategory(int id, CategoryForCreationOrUpdateDto categoryOrUpdateDto)
+        //{
+        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
 
-            if (!_dataService.UpdateCategory(category))
-            {
-                return NotFound();
-            }
+        //    if (!_dataService.UpdateCategory(category))
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
+        //    return NoContent();
 
-        }
+        //}
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCategory(int id)
-        {
-            if (!_dataService.DeleteCategory(id))
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteCategory(int id)
+        //{
+        //    if (!_dataService.DeleteCategory(id))
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }

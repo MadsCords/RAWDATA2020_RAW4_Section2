@@ -39,4 +39,11 @@ namespace WebService.Models.Profiles
             CreateMap<Name_Basics, NameBasicsDto>();
         }
     }
+    public class FunctionProfile : Profile
+    {
+        public FunctionProfile()
+        {
+            CreateMap<SearchTitleFunction, FunctionsDto>();
+        }
+    }
 }

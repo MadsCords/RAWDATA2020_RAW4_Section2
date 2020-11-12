@@ -32,25 +32,30 @@ namespace WebService.Controllers
 
             return Ok(_mapper.Map<IEnumerable<UsersDto>>(Users));
         }
-        [HttpGet("{id}")]
-        public IActionResult GetUserId(int id)
-        {
-            var user = _dataService.GetUserId(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //[HttpGet("{id}")]
+        //public IActionResult GetUserId(int id)
+        //{
+        //    var user = _dataService.GetUserId(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(_mapper.Map<UsersDto>(user));
-        }
+        //    return Ok(_mapper.Map<UsersDto>(user));
+        //}
         [HttpPost]
         public IActionResult CreateUser(UserForCreationDto userCreationDto)
         {
             var user = _mapper.Map<Users>(userCreationDto);
 
-            _dataService.CreateUser(user);
+           var newUser =  _dataService.CreateUser(user);
 
-            return Created("", user);
+            if(newUser == null)
+            {
+                return BadRequest();
+            }
+
+            return CreatedAtRoute(null, newUser);
         }
 
         /*[HttpPut("{id}")]

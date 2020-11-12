@@ -14,14 +14,14 @@ namespace DataServiceLib
         //   = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        //public DbSet<Category> Categories { get; set; }
+        //public DbSet<Product> Products { get; set; }
         public DbSet<Title_Basics> Title_basics { get; set; }
         public DbSet<Users> Users { get; set; }
-        public DbSet<Users> UserId { get; set; }
+        //public DbSet<Users> UserId { get; set; }
         public DbSet<Name_Basics> Names { get; set; }
-        public DbSet<Name_Basics> NameId { get; set; }
-
+        //public DbSet<Name_Basics> NameId { get; set; }
+        public DbSet<SearchTitleFunction> SearchTitle { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,7 +34,8 @@ namespace DataServiceLib
             TitlesModel(modelBuilder);
             UsersModel(modelBuilder);
             NamesModel(modelBuilder);
-            UsersSearchModel(modelBuilder);
+            SearchFunctionModel(modelBuilder);
+            //UsersSearchModel(modelBuilder);
             /*modelBuilder.Entity<Category>().ToTable("categories");
             modelBuilder.Entity<Category>().Property(x => x.Id).HasColumnName("categoryid");
             modelBuilder.Entity<Category>().Property(x => x.Name).HasColumnName("categoryname");
@@ -68,7 +69,7 @@ namespace DataServiceLib
             modelBuilder.Entity<Users>().ToTable("users");
             modelBuilder.Entity<Users>().Property(x => x.Userid).HasColumnName("userid");
             modelBuilder.Entity<Users>().Property(x => x.Username).HasColumnName("username");
-            modelBuilder.Entity<Users>().Property(x => x.Username).HasColumnName("password");
+            modelBuilder.Entity<Users>().Property(x => x.Password).HasColumnName("password");
             modelBuilder.Entity<Users>().Property(x => x.Firstname).HasColumnName("firstname");
             modelBuilder.Entity<Users>().Property(x => x.Lastname).HasColumnName("lastname");
             modelBuilder.Entity<Users>().Property(x => x.Birthyear).HasColumnName("birthyear");
@@ -76,17 +77,25 @@ namespace DataServiceLib
 
         private static void NamesModel(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Name_Basics>().ToTable("name_basics");      
             modelBuilder.Entity<Name_Basics>().Property(x => x.Nconst).HasColumnName("nconst");
-            modelBuilder.Entity<Name_Basics>().Property(x => x.PrimaryName).HasColumnName("nconst");
+            modelBuilder.Entity<Name_Basics>().Property(x => x.PrimaryName).HasColumnName("primaryname");
             modelBuilder.Entity<Name_Basics>().Property(x => x.Birthyear).HasColumnName("birthyear");
             modelBuilder.Entity<Name_Basics>().Property(x => x.Deathyear).HasColumnName("deathyear");
         }
 
         private static void UsersSearchModel(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Users_SearchHistory>().ToTable("users_searchhistory");
             modelBuilder.Entity<Users_SearchHistory>().Property(x => x.Userid).HasColumnName("userid");
             modelBuilder.Entity<Users_SearchHistory>().Property(x => x.SearchEntry).HasColumnName("searchentry");
             modelBuilder.Entity<Users_SearchHistory>().Property(x => x.SearchDate).HasColumnName("searchdate");
+        }
+        private static void SearchFunctionModel(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SearchTitleFunction>().HasNoKey();
+            modelBuilder.Entity<SearchTitleFunction>().Property(x => x.Tconst).HasColumnName("tconst");
+            modelBuilder.Entity<SearchTitleFunction>().Property(x => x.PrimaryTitle).HasColumnName("primarytitle");
         }
     }
 

@@ -12,7 +12,7 @@ using WebService.Models.Profiles;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/NameBasics")]
+    [Route("api/Name")]
     public class NameBasicsController : ControllerBase
     {
         IDataService _dataService;
@@ -33,51 +33,51 @@ namespace WebService.Controllers
             return Ok(_mapper.Map<IEnumerable<NameBasicsDto>>(Names));
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetNameId(int id)
-        {
-            var name = _dataService.GetNameId(id);
-            if (name == null)
-            {
-                return NotFound();
-            }
+        //[HttpGet("{id}")]
+        //public IActionResult GetNameId(int id)
+        //{
+        //    var name = _dataService.GetNameId(id);
+        //    if (name == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(_mapper.Map<NameBasicsDto>(name));
-        }
+        //    return Ok(_mapper.Map<NameBasicsDto>(name));
+        //}
 
-        [HttpPost]
-        public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        {
-            var category = _mapper.Map<Category>(categoryOrUpdateDto);
+        //[HttpPost]
+        //public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
+        //{
+        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
 
-            _dataService.CreateCategory(category);
+        //    _dataService.CreateCategory(category);
 
-            return Created("", category);
-        }
+        //    return Created("", category);
+        //}
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateCategory(int id, CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        {
-            var category = _mapper.Map<Category>(categoryOrUpdateDto);
+        //[HttpPut("{id}")]
+        //public IActionResult UpdateCategory(int id, CategoryForCreationOrUpdateDto categoryOrUpdateDto)
+        //{
+        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
 
-            if (!_dataService.UpdateCategory(category))
-            {
-                return NotFound();
-            }
+        //    if (!_dataService.UpdateCategory(category))
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
+        //    return NoContent();
 
-        }
+        //}
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCategory(int id)
-        {
-            if (!_dataService.DeleteCategory(id))
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteCategory(int id)
+        //{
+        //    if (!_dataService.DeleteCategory(id))
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }

@@ -8,7 +8,7 @@ namespace DataServiceLib
     public class Users
     {
         [Key]
-        public string Userid { get; set; }
+        public int? Userid { get; set; }
         public string Username { get; set; } 
         public string Password { get; set; }
         public string Firstname { get; set; } 
