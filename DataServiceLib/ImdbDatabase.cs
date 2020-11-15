@@ -23,7 +23,7 @@ namespace DataServiceLib
         //public DbSet<Name_Basics> NameId { get; set; }
         public DbSet<SearchTitleFunction> SearchTitle { get; set; }
         public DbSet<StructuredSearchFunction> StructuredSearch { get; set; }
-
+        public DbSet<Users_SearchHistory> SearchHistory { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            // optionsBuilder.UseLoggerFactory(MyLoggerFactory);
@@ -36,7 +36,7 @@ namespace DataServiceLib
             UsersModel(modelBuilder);
             NamesModel(modelBuilder);
             SearchFunctionModel(modelBuilder);
-            //UsersSearchModel(modelBuilder);
+            UsersSearchModel(modelBuilder);
             /*modelBuilder.Entity<Category>().ToTable("categories");
             modelBuilder.Entity<Category>().Property(x => x.Id).HasColumnName("categoryid");
             modelBuilder.Entity<Category>().Property(x => x.Name).HasColumnName("categoryname");

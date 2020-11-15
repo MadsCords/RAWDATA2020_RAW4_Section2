@@ -30,9 +30,8 @@ namespace WebService.Controllers
             return Ok(_mapper.Map<IEnumerable<FunctionsDto>>(titlesearch));
         }
 
-        [HttpGet("{userid}/{entrytitle}/{entryplot}/{entrycharacters}/{entryname}")]
-        [Route("api/structuredsearch")]
-        public IActionResult StructuredSearch (int userid, string entrytitle, string entryplot, string entrycharacters, string entryname)
+        [HttpGet("structuredsearch/{userid}/{entrytitle}/{entryplot}/{entrycharacters}/{entryname}")]
+        public IActionResult StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname)
         {
             var stringsearch = _dataService.StructuredSearch(userid, entrytitle, entryplot, entrycharacters, entryname);
             return Ok(_mapper.Map<IEnumerable<StructuredSearchDto>>(stringsearch));
