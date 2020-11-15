@@ -91,7 +91,7 @@ namespace DataServiceLib
         public IList<StructuredSearchFunction> StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname)
         {
             var ctx = new ImdbDatabase();
-            var result = ctx.StructuredSearch.FromSqlInterpolated($"select * from structured_string_search({userid},{entrytitle},{entryplot},{entrycharacters},{entryname})");
+            var result = ctx.StructuredSearch.FromSqlInterpolated($"select * from \"structured_string_search\"({userid},{entrytitle},{entryplot},{entrycharacters},{entryname})");
             //foreach (var searchTitle in result)
             //{
             //    Console.WriteLine($"{searchTitle.Tconst}, {searchTitle.PrimaryTitle}");
