@@ -25,21 +25,30 @@ namespace DataServiceLib
         //    return _categories;
         //}
 
-        public IList<Title_Basics> GetTitles()
+        public IList<Title_Basics> GetTitles(int? userid)
         {
             var ctx = new ImdbDatabase();
+            if (ctx.Users.FirstOrDefault(x => x.Userid == userid) == null)
+                throw new ArgumentException("User not found");
             return ctx.Title_basics.ToList();
+        }
+        public Title_Basics GetTitle(int? userid, string tconst)
+        {
+            var ctx = new ImdbDatabase();
+            if (ctx.Users.FirstOrDefault(x => x.Userid == userid) == null)
+                throw new ArgumentException("User not found");
+            return ctx.Title_basics.FirstOrDefault(x => x.Tconst == tconst);
         }
         public IList<Users> GetUsers()
         {
             var ctx = new ImdbDatabase();
             return ctx.Users.ToList();
         }
-        //public IList<Users> GetUserId(int id)
-        //{
-        //    var ctx = new ImdbDatabase();
-        //    return ctx.UserId.ToList();
-        //}
+        public Users GetUser(string username)
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.Users.FirstOrDefault(x => x.Username == username);
+        }
         public IList<Name_Basics> GetNames()
         {
             var ctx = new ImdbDatabase();
@@ -62,7 +71,7 @@ namespace DataServiceLib
             //}
 
 
-            public Users CreateUser(Users user)
+            public Users CreateUser(Users user) //string firstname, string lastname, string username, string password = null, string salt = null
         {
             var ctx = new ImdbDatabase();
 

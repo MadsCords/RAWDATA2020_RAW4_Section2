@@ -23,16 +23,36 @@ namespace WebService.Controllers
             _dataService = dataService;
             _mapper = mapper;
         }
+        
+        [HttpGet("{tconst}", Name = nameof(GetTitle))]
+        public IActionResult GetTitle(string tconst)
+        {
+            try {
+                var user = Request.HttpContext.Items["User"] as Users;
+                var Title = _dataService.GetTitle(user.Userid, tconst);
+            return Ok(_mapper.Map<IEnumerable<TitleDto>>(Title));
+            }
+            catch (ArgumentException)
+            {
+                return Unauthorized();
+            }
+        }
 
         [HttpGet]
-        public IActionResult GetTitle()
+        public IActionResult GetTitles()
         {
-            
-            var Titles = _dataService.GetTitles();
-            
-            return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
+            try
+            {
+                var user = Request.HttpContext.Items["User"] as Users;
+                var Titles = _dataService.GetTitles(user.Userid);
+                return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
+            }
+            catch (ArgumentException)
+            {
+                return Unauthorized();
+            }
         }
-    
+
         //[HttpGet("{id}")]
         //public IActionResult GetCategory(int id)
         //{
@@ -49,7 +69,7 @@ namespace WebService.Controllers
         //public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
         //{
         //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
-            
+
         //    _dataService.CreateCategory(category);
 
         //    return Created("", category);
