@@ -70,6 +70,25 @@ namespace DataServiceLib
             return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
 
         }
+        //public Users DeleteUser(Users user)
+        //{
+        //    if ()
+        //    {
+
+        //    }
+        //    var ctx = new ImdbDatabase();
+
+        //    var conn = (NpgsqlConnection)ctx.Database.GetDbConnection();
+        //    conn.Open();
+        //    var q = "select \"createUser\"('" + user.Username + "', '" + user.Password + "', '" + user.Firstname + "', '" + user.Lastname + "', '" + user.Birthyear + "')";
+        //    //Console.WriteLine(q);
+        //    var cmd = new NpgsqlCommand(q, conn);
+
+        //    cmd.ExecuteNonQuery();
+
+        //    return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
+
+        //}
         public IList<SearchTitleFunction> SearchTitle(int userid, string searchentry)
         {
             var ctx = new ImdbDatabase();
