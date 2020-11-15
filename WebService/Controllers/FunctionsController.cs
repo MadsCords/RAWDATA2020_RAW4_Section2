@@ -10,7 +10,7 @@ using WebService.Models;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/searchtitle")]
+    [Route("api/search")]
     public class FunctionsController : Controller
     {
         IDataService _dataService;
@@ -21,7 +21,7 @@ namespace WebService.Controllers
             _dataService = dataService;
             _mapper = mapper;
         }
-        [HttpGet("{userid}/{searchstring}")]
+        [HttpGet("searchtitle/{userid}/{searchstring}")]
         public IActionResult SearchTitle(int userid, string searchstring)
         {
            // var stringsearch = "4,Donald%";
