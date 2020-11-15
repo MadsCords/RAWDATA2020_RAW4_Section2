@@ -45,17 +45,24 @@ namespace DataServiceLib
             var ctx = new ImdbDatabase();
             return ctx.Names.ToList();
         }
-        //public IList<Name_Basics> GetNameId(int id)
-        //{
-        //    var ctx = new ImdbDatabase();
-        //    return ctx.NameId.ToList();
-        //}
-        //public Category GetCategory(int id)
-        //{
-        //    return _categories.FirstOrDefault(x => x.Id == id);
-        //}
+        public IList<Users_SearchHistory> GetSearchHistory()
+        {
+            var ctx = new ImdbDatabase();
+            return ctx.SearchHistory.ToList();
 
-        public Users CreateUser(Users user)
+        }
+            //public IList<Name_Basics> GetNameId(int id)
+            //{
+            //    var ctx = new ImdbDatabase();
+            //    return ctx.NameId.ToList();
+            //}
+            //public Category GetCategory(int id)
+            //{
+            //    return _categories.FirstOrDefault(x => x.Id == id);
+            //}
+
+
+            public Users CreateUser(Users user)
         {
             var ctx = new ImdbDatabase();
 
