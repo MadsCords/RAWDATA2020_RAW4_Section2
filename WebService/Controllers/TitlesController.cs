@@ -27,10 +27,15 @@ namespace WebService.Controllers
         [HttpGet("{tconst}", Name = nameof(GetTitle))]
         public IActionResult GetTitle(string tconst)
         {
+            if (Program.CurrentUser == null)
+            {
+                return Unauthorized();
+            }
+
             try {
-                var user = Request.HttpContext.Items["User"] as Users;
-                 var Title = _dataService.GetTitle(user.Userid, tconst);
-            return Ok(_mapper.Map<IEnumerable<TitleDto>>(Title));
+                //var user = Request.HttpContext.Items["User"] as Users;
+                var Title = _dataService.GetTitle(Program.CurrentUser.Userid, tconst);
+                return Ok(_mapper.Map<IEnumerable<TitleDto>>(Title));
             }
             catch (ArgumentException)
             {
@@ -41,18 +46,17 @@ namespace WebService.Controllers
         [HttpGet]
         public IActionResult GetTitles()
         {
-            var auth = Request.Headers["Authorization"];
-            var user = _dataService.GetUser(auth.ToString());
             
-            if (user == null)
+            if (Program.CurrentUser == null)
             {
                 return Unauthorized();
             }
             
             try
             {
-                var user = Request.HttpContext.Items["User"] as Users;
-                var Titles = _dataService.GetTitles(user.Userid);
+                 
+                //var user = Request.HttpContext.Items["User"] as Users;
+                var Titles = _dataService.GetTitles(Program.CurrentUser.Userid);
                 return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
             }
             catch (ArgumentException)
