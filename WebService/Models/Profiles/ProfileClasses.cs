@@ -21,6 +21,7 @@ namespace WebService.Models.Profiles
         {
             CreateMap<Users, UsersDto>();
             CreateMap<UserForCreationDto, Users>();
+            CreateMap<Users_SearchHistory, SearchHistoryDto>();
         }
     }
     public class NameProfile : Profile

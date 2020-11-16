@@ -8,9 +8,9 @@ namespace DataServiceLib
     public class Users_SearchHistory
     {
         [Key]
-        public string Userid { get; set; }
+        public int? Userid { get; set; }
         public string SearchEntry { get; set; }
-        public string SearchDate { get; set; }
+        public ulong SearchDate { get; set; }
       
     }
 }
