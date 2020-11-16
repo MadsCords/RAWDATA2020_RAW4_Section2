@@ -35,6 +35,7 @@ namespace WebService.Models.Profiles
         public FunctionProfile()
         {
             CreateMap<SearchTitleFunction, FunctionsDto>();
+            CreateMap<StructuredSearchFunction, StructuredSearchDto>();
         }
     }
 }
