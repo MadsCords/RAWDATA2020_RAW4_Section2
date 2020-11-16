@@ -33,7 +33,7 @@ namespace WebService.Controllers
         [HttpGet("structuredsearch/{userid}/{entrytitle}/{entryplot}/{entrycharacters}/{entryname}")]
         public IActionResult StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname)
         {
-            var stringsearch = _dataService.StructuredSearch(userid, entrytitle, entryplot, entrycharacters, entryname);
+                var stringsearch = _dataService.StructuredSearch(userid, entrytitle, entryplot, entrycharacters, entryname);
             return Ok(_mapper.Map<IEnumerable<StructuredSearchDto>>(stringsearch));
         }
     }
