@@ -9,7 +9,6 @@ namespace WebService.Models
 {
     public class SearchHistoryDto
     {
-        [Key]
         public string Userid { get; set; }
         public string SearchEntry { get; set; }
         public string SearchDate { get; set; }

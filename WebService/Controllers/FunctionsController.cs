@@ -36,6 +36,7 @@ namespace WebService.Controllers
                 var stringsearch = _dataService.StructuredSearch(userid, entrytitle, entryplot, entrycharacters, entryname);
             return Ok(_mapper.Map<IEnumerable<StructuredSearchDto>>(stringsearch));
         }
+
     }
 
 }

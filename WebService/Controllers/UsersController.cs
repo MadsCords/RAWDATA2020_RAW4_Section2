@@ -47,6 +47,21 @@ namespace WebService.Controllers
 
             return CreatedAtRoute(null, newUser);
         }
+
+        [HttpGet("searchhistory/{userid}")]
+        public IActionResult GetSearchHistory(int? userid)
+        {
+            var SearchHistory = _dataService.GetSearchHistory(userid);
+            if (SearchHistory == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<IEnumerable<SearchHistoryDto>>(SearchHistory));
+        }
+
+
+
+
         //[HttpPost("register")]    PROBLEMER MED PACKAGE INSTALLATIONER, KAN IKKE HENTE ELLER UPDATE NYE PACKAGES
         //public IActionResult Register(RegisterDto dto)
         //{

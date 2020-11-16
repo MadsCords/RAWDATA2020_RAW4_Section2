@@ -54,7 +54,7 @@ namespace DataServiceLib
             var ctx = new ImdbDatabase();
             return ctx.Names.ToList();
         }
-        public IList<Users_SearchHistory> GetSearchHistory()
+        public IList<Users_SearchHistory> GetSearchHistory(int? userid)
         {
             var ctx = new ImdbDatabase();
             return ctx.SearchHistory.ToList();
