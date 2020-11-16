@@ -48,6 +48,12 @@ namespace WebService.Controllers
             return CreatedAtRoute(null, newUser);
         }
 
+        //[HttpDelete("deleteuser/{userid}")]
+        //public IActionResult DeleteUser(int? userid)
+        //{
+
+        //}
+
         [HttpGet("searchhistory/{userid}")]
         public IActionResult GetSearchHistory(int? userid)
         {
@@ -58,9 +64,6 @@ namespace WebService.Controllers
             }
             return Ok(_mapper.Map<IEnumerable<SearchHistoryDto>>(SearchHistory));
         }
-
-
-
 
         //[HttpPost("register")]    PROBLEMER MED PACKAGE INSTALLATIONER, KAN IKKE HENTE ELLER UPDATE NYE PACKAGES
         //public IActionResult Register(RegisterDto dto)
