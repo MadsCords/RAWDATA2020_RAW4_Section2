@@ -29,7 +29,7 @@ namespace WebService.Controllers
         {
             try {
                 var user = Request.HttpContext.Items["User"] as Users;
-                var Title = _dataService.GetTitle(user.Userid, tconst);
+                 var Title = _dataService.GetTitle(user.Userid, tconst);
             return Ok(_mapper.Map<IEnumerable<TitleDto>>(Title));
             }
             catch (ArgumentException)
@@ -43,7 +43,7 @@ namespace WebService.Controllers
         {
             var auth = Request.Headers["Authorization"];
             var user = _dataService.GetUser(auth.ToString());
-            //test with github
+            
             if (user == null)
             {
                 return Unauthorized();
@@ -51,7 +51,7 @@ namespace WebService.Controllers
             
             try
             {
-               // var user = Request.HttpContext.Items["User"] as Users;
+                var user = Request.HttpContext.Items["User"] as Users;
                 var Titles = _dataService.GetTitles(user.Userid);
                 return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
             }
