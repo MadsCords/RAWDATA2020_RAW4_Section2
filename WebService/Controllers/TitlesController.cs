@@ -33,7 +33,6 @@ namespace WebService.Controllers
             }
 
             try {
-                //var user = Request.HttpContext.Items["User"] as Users;
                 var Title = _dataService.GetTitle(Program.CurrentUser.Userid, tconst);
                 return Ok(_mapper.Map<IEnumerable<TitleDto>>(Title));
             }
@@ -54,8 +53,6 @@ namespace WebService.Controllers
             
             try
             {
-                 
-                //var user = Request.HttpContext.Items["User"] as Users;
                 var Titles = _dataService.GetTitles(Program.CurrentUser.Userid);
                 return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
             }
@@ -111,5 +108,29 @@ namespace WebService.Controllers
 
         //    return NoContent();
         //}
+
+        /**
+         * 
+         *  Dto Helper
+         *  
+         */
+        private TitleDto CreateTitleDto(Title_Basics title)
+        {
+            return new TitleDto
+            {
+                Url = Url.Link(nameof(GetTitle), new { tconst = title.Tconst}),
+                TitleType = title.TitleType,
+                PrimaryTitle = title.PrimaryTitle,
+                OriginalTitle = title.OriginalTitle,
+                IsAdult = title.IsAdult,
+                StartYear = title.StartYear,
+                EndYear = title.EndYear,
+                RuntimeMinutes = title.RuntimeMinutes,
+                Poster = title.Poster,
+                Awards = title.Awards,
+                Plot = title.Plot
+
+            };
+        }
     }
 }
