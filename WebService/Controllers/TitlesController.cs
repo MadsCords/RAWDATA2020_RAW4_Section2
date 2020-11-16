@@ -51,7 +51,7 @@ namespace WebService.Controllers
             
             try
             {
-                var user = Request.HttpContext.Items["User"] as Users;
+                //var user = Request.HttpContext.Items["User"] as Users;
                 var Titles = _dataService.GetTitles(user.Userid);
                 return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
             }
