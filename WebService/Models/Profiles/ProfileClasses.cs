@@ -8,15 +8,6 @@ using DataServiceLib;
 
 namespace WebService.Models.Profiles
 {
-    public class CategoryProfile : Profile
-    {
-        public CategoryProfile()
-        {
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryForCreationOrUpdateDto, Category>();
-        }
-       
-    }
     public class TitleProfile : Profile
     {
         public TitleProfile()
