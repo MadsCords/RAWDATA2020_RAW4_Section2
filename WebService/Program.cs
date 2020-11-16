@@ -13,7 +13,7 @@ namespace WebService
     public class Program
     {
 
-        public static Users CurrentUser = null;
+        public static Users CurrentUser = null; 
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

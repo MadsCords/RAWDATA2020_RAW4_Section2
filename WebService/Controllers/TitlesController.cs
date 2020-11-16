@@ -34,7 +34,11 @@ namespace WebService.Controllers
 
             try {
                 var Title = _dataService.GetTitle(Program.CurrentUser.Userid, tconst);
-                return Ok(_mapper.Map<IEnumerable<TitleDto>>(Title));
+                if (Title == null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<TitleDto>(Title));
             }
             catch (ArgumentException)
             {
@@ -114,23 +118,23 @@ namespace WebService.Controllers
          *  Dto Helper
          *  
          */
-        private TitleDto CreateTitleDto(Title_Basics title)
-        {
-            return new TitleDto
-            {
-                Url = Url.Link(nameof(GetTitle), new { tconst = title.Tconst}),
-                TitleType = title.TitleType,
-                PrimaryTitle = title.PrimaryTitle,
-                OriginalTitle = title.OriginalTitle,
-                IsAdult = title.IsAdult,
-                StartYear = title.StartYear,
-                EndYear = title.EndYear,
-                RuntimeMinutes = title.RuntimeMinutes,
-                Poster = title.Poster,
-                Awards = title.Awards,
-                Plot = title.Plot
+        //private TitleDto CreateTitleDto(Title_Basics title)
+        //{
+        //    return new TitleDto
+        //    {
+        //        Url = Url.Link(nameof(GetTitle), new { tconst = title.Tconst}),
+        //        TitleType = title.TitleType,
+        //        PrimaryTitle = title.PrimaryTitle,
+        //        OriginalTitle = title.OriginalTitle,
+        //        IsAdult = title.IsAdult,
+        //        StartYear = title.StartYear,
+        //        EndYear = title.EndYear,
+        //        RuntimeMinutes = title.RuntimeMinutes,
+        //        Poster = title.Poster,
+        //        Awards = title.Awards,
+        //        Plot = title.Plot
 
-            };
-        }
+        //    };
+        //}
     }
 }
