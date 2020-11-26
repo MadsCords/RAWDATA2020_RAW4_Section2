@@ -12,19 +12,10 @@ namespace DataServiceLib
     public class DataService : IDataService
     {
       
-
-
         public DataService()
         {
            
         }
-
-
-        //public IList<Category> GetCategories()
-        //{
-        //    return _categories;
-        //}
-
         public IList<Title_Basics> GetTitles(int? userid)
         {
             var ctx = new ImdbDatabase();
@@ -86,33 +77,16 @@ namespace DataServiceLib
             return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
 
         }
-        //public Users DeleteUser(Users user)
-        //{
-        //    if ()
-        //    {
+            //public void DeleteUser()
+            //{
+            //var ctx = new ImdbDatabase();
 
-        //    }
-        //    var ctx = new ImdbDatabase();
+            //}
 
-        //    var conn = (NpgsqlConnection)ctx.Database.GetDbConnection();
-        //    conn.Open();
-        //    var q = "select \"createUser\"('" + user.Username + "', '" + user.Password + "', '" + user.Firstname + "', '" + user.Lastname + "', '" + user.Birthyear + "')";
-        //    //Console.WriteLine(q);
-        //    var cmd = new NpgsqlCommand(q, conn);
-
-        //    cmd.ExecuteNonQuery();
-
-        //    return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
-
-        //}
         public IList<SearchTitleFunction> SearchTitle(int userid, string searchentry)
         {
             var ctx = new ImdbDatabase();
             var result = ctx.SearchTitle.FromSqlInterpolated($"select * from string_search({userid},{searchentry})");
-            //foreach (var searchTitle in result)
-            //{
-            //    Console.WriteLine($"{searchTitle.Tconst}, {searchTitle.PrimaryTitle}");
-            //}
             return result.ToList();
         }
 
@@ -120,53 +94,7 @@ namespace DataServiceLib
         {
             var ctx = new ImdbDatabase();
             var result = ctx.StructuredSearch.FromSqlInterpolated($"select * from \"structured_string_search\"({userid},{entrytitle},{entryplot},{entrycharacters},{entryname})");
-            //foreach (var searchTitle in result)
-            //{
-            //    Console.WriteLine($"{searchTitle.Tconst}, {searchTitle.PrimaryTitle}");
-            //}
             return result.ToList();
         }
-        //public void CreateCategory(Category category)
-        //{
-        //    var maxId = _categories.Max(x => x.Id);
-        //    category.Id = maxId + 1;
-        //    _categories.Add(category);
-        //}
-
-        //public bool UpdateCategory(Category category)
-        //{ 
-        //    var dbCat = GetCategory(category.Id);
-        //    if (dbCat == null)
-        //    {
-        //        return false;
-        //    }
-        //    dbCat.Name = category.Name;
-        //    dbCat.Description = category.Description;
-        //    return true;
-        //}
-
-        //public bool DeleteCategory(int id)
-        //{
-        //    var dbCat = GetCategory(id);
-        //    if (dbCat == null)
-        //    {
-        //        return false;
-        //    }
-        //    _categories.Remove(dbCat);
-        //    return true;
-        //}
-
-
-        //public IList<Product> GetProducts()
-        //{
-        //    return _products;
-        //}
-
-        //public Product GetProduct(int id)
-        //{
-        //    return _products.FirstOrDefault(x => x.Id == id);
-        //}
-
-
     }
 }

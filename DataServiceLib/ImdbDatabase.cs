@@ -13,9 +13,6 @@ namespace DataServiceLib
         // public static readonly ILoggerFactory MyLoggerFactory
         //   = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
-
-        //public DbSet<Category> Categories { get; set; }
-        //public DbSet<Product> Products { get; set; }
         public DbSet<Title_Basics> Title_basics { get; set; }
         public DbSet<Users> Users { get; set; }
         //public DbSet<Users> UserId { get; set; }
@@ -37,15 +34,6 @@ namespace DataServiceLib
             NamesModel(modelBuilder);
             SearchFunctionModel(modelBuilder);
             UsersSearchModel(modelBuilder);
-            /*modelBuilder.Entity<Category>().ToTable("categories");
-            modelBuilder.Entity<Category>().Property(x => x.Id).HasColumnName("categoryid");
-            modelBuilder.Entity<Category>().Property(x => x.Name).HasColumnName("categoryname");
-            modelBuilder.Entity<Category>().Property(x => x.Description).HasColumnName("description");
-
-            modelBuilder.Entity<Product>().ToTable("products");
-            modelBuilder.Entity<Product>().Property(x => x.Id).HasColumnName("productid");
-            modelBuilder.Entity<Product>().Property(x => x.Name).HasColumnName("productname");
-            modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");*/
         }
 
         private static void TitlesModel(ModelBuilder modelBuilder)

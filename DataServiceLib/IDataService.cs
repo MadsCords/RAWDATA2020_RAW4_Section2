@@ -4,9 +4,6 @@ namespace DataServiceLib
 {
     public interface IDataService
     {
-        //IList<Category> GetCategories();
-        //Category GetCategory(int id);
-        //IList<Product> GetProducts();
         IList<Title_Basics> GetTitles(int? userid);
         Title_Basics GetTitle(int? userid, string tconst);
         IList<Users> GetUsers();
@@ -19,9 +16,5 @@ namespace DataServiceLib
         //Product GetProduct(int id);
         Users CreateUser(Users user); //string firstname, string lastname, string username, string password = null, string salt = null
         Users GetUser(string username);
-        
-        //void CreateCategory(Category category);
-        //bool UpdateCategory(Category category);
-        //bool DeleteCategory(int id);
     }
 }

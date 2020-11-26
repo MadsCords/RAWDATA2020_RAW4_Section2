@@ -7,27 +7,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WebService
-{
-    public class PasswordService
-    {
-        private static RNGCryptoServiceProvider _rng = new RNGCryptoServiceProvider();
-        public static string HashPassword(string password, string salt, int size)
-        {
-           var hash = KeyDerivation.Pbkdf2(
-                password,
-                Encoding.UTF8.GetBytes(salt),
-                KeyDerivationPrf.HMACSHA256,
-                10000,
-                size);
+{ // SKAL BRUGES TIL EVT. IMPLEMENTERING AF YDERLIGER AUTHENTICATION
+    //public class PasswordService
+    //{
+    //    private static RNGCryptoServiceProvider _rng = new RNGCryptoServiceProvider();
+    //    public static string HashPassword(string password, string salt, int size)
+    //    {
+    //       var hash = KeyDerivation.Pbkdf2(
+    //            password,
+    //            Encoding.UTF8.GetBytes(salt),
+    //            KeyDerivationPrf.HMACSHA256,
+    //            10000,
+    //            size);
 
-            return Convert.ToBase64String(hash);
-        }
+    //        return Convert.ToBase64String(hash);
+    //    }
 
-        public static string GenerateSalt(int size)
-        {
-            var buffer = new byte[size];
-            _rng.GetBytes(buffer);
-            return Convert.ToBase64String(buffer);
-        }
-    }
+    //    public static string GenerateSalt(int size)
+    //    {
+    //        var buffer = new byte[size];
+    //        _rng.GetBytes(buffer);
+    //        return Convert.ToBase64String(buffer);
+    //    }
+    //}
 }

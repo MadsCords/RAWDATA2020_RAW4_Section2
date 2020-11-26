@@ -24,7 +24,6 @@ namespace WebService.Controllers
         [HttpGet("searchstring/{userid}/{searchstring}")]
         public IActionResult SearchTitle(int userid, string searchstring)
         {
-           // var stringsearch = "4,Donald%";
             var titlesearch = _dataService.SearchTitle(userid,searchstring);
 
             return Ok(_mapper.Map<IEnumerable<FunctionsDto>>(titlesearch));
