@@ -1,8 +1,11 @@
 ﻿define([], () => {
-
-    let getTitles = (callback) =>
-    {
-        fetch('api/Titles')
+    let currentUsername = ko.observable('hej');
+    let myHeaders = new Headers();
+    myHeaders.append('Authorization', currentUsername);
+   
+    let getTitles = (callback) => {
+        fetch('api/Titles', myHeaders)
+        
             .then(response => response.json())
             .then(callback);
     } 
