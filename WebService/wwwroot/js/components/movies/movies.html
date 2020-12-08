@@ -10,16 +10,18 @@
 <!--<div data-bind="with: movies"></div>-->
 
 
-<div>
+<!--<div>
     <div data-bind="foreach: movieTitles">
-        <div>
-            <div>
-                <ul data-bind="text: primaryTitle">
-                    <li data-bind="text: primaryTitle, click: selectMovie"> </li>
-                </ul>
-            </div>
-        </div>
+         <ul data-bind="text: primaryTitle">
+            <li data-bind="text: primaryTitle, click: selectMovie"> </li>
+         </ul>
     </div>
+</div>-->
+<input data-bind />
+<div >
+    <ul data-bind="foreach: searchTitle">
+        <li data-bind="text: primaryTitle">SearchTitle: </li>
+    </ul>
 </div>
 
 

@@ -60,6 +60,7 @@ namespace WebService.Controllers
                 //var Titles = _dataService.GetTitles(Program.CurrentUser.Userid);
                 //var Titles = _dataService.GetTitles(1);
                 //return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
+
                 var items = _dataService.GetTitles(userid, page, pageSize);
 
                 var numberOfMovies = _dataService.NumberOfMovies();

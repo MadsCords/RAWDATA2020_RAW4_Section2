@@ -22,9 +22,9 @@
             .then(callback);
             
     };
-    getTitles(x => {
-        titles(x)
-    });
+    //getTitles(x => {
+    //    titles(x)
+    //});
     
     return {
         currentComponent,    
