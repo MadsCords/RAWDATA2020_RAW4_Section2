@@ -4,7 +4,8 @@ namespace DataServiceLib
 {
     public interface IDataService
     {
-        IList<Title_Basics> GetTitles(int? userid);
+        IList<TitleBasicsList> GetTitles(int? userid, int page, int pageSize);
+        int NumberOfMovies();
         Title_Basics GetTitle(int? userid, string tconst);
         IList<Users> GetUsers();
         //IList<Users> GetUserId(int id);

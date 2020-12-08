@@ -1,5 +1,5 @@
-﻿define([], () => {
-    return function () {
+﻿define(['knockout'], (ko) => {
+    return function (params) {
 
 
         return {

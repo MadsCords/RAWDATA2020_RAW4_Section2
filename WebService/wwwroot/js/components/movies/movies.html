@@ -7,5 +7,22 @@
 <body>
 <h1>Movies</h1>
 
+<!--<div data-bind="with: movies"></div>-->
+
+
+<div>
+    <div data-bind="foreach: movieTitles">
+        <div>
+            <div>
+                <ul data-bind="text: primaryTitle">
+                    <li data-bind="text: primaryTitle, click: selectMovie"> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script data-main="js/main.js" src="js/lib/require.js/require.min.js"></script>
 </body>
 </html>

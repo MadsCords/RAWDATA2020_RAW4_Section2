@@ -47,23 +47,57 @@ namespace WebService.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTitles()
+        public IActionResult GetTitles(int? userid, int page = 0, int pageSize = 10)
         {
             
-            if (Program.CurrentUser == null)
-            {
-                return Unauthorized();
-            }
+            //if (Program.CurrentUser == null)
+            //{
+            //    return Unauthorized();
+            //}
             
-            try
-            {
-                var Titles = _dataService.GetTitles(Program.CurrentUser.Userid);
-                return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
-            }
-            catch (ArgumentException)
-            {
-                return Unauthorized();
-            }
+            //try
+            //{
+                //var Titles = _dataService.GetTitles(Program.CurrentUser.Userid);
+                //var Titles = _dataService.GetTitles(1);
+                //return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
+                var items = _dataService.GetTitles(userid, page, pageSize);
+
+                var numberOfMovies = _dataService.NumberOfMovies();
+
+                var pages = (int)Math.Ceiling((double)numberOfMovies / pageSize);
+
+                var prev = (string)null;
+                if (page > 0)
+                {
+                    prev = Url.Link(nameof(GetTitles), new { page = page - 1, pageSize });
+                }
+
+                var next = (string)null;
+                if (page < pages - 1)
+                {
+                    next = Url.Link(nameof(GetTitles), new { page = page + 1, pageSize });
+                }
+
+
+                var result = new
+                {
+                    pageSizes = new int[] { 5, 10, 15, 20 },
+                    count = numberOfMovies,
+                    pages,
+                    prev,
+                    next,
+                    items
+                };
+
+                return Ok(result);
+
+
+
+            //}
+            //catch (ArgumentException)
+            //{
+            //    return Unauthorized();
+            //}
         }
 
         //[HttpGet("{id}")]

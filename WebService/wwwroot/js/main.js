@@ -6,7 +6,8 @@ require.config({
         text: "lib/require-text/text.min",
         dataservice: "services/dataService",
         bootstrap: "../css/lib/twitter-bootstrap/js/bootstrap.bundle.min",
-        jquery: "lib/jquery/jquery.min"
+        jquery: "lib/jquery/jquery.min",
+        postman: "services/postman"
     },
     shim: {
         bootstrap: ['jquery']
@@ -26,6 +27,6 @@ require(['knockout', 'text'], (ko) => {
 
 });
 
-require(['knockout', 'viewmodel', 'bootstrap'], (ko,vm) => {
+require(['knockout', 'viewModel', 'bootstrap'], (ko, vm) => {
     ko.applyBindings(vm);
 });

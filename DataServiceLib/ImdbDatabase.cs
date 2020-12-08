@@ -14,6 +14,7 @@ namespace DataServiceLib
         //   = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         public DbSet<Title_Basics> Title_basics { get; set; }
+        public DbSet<TitleBasicsList> TitleLists { get; set; }
         public DbSet<Users> Users { get; set; }
         //public DbSet<Users> UserId { get; set; }
         public DbSet<Name_Basics> Names { get; set; }
@@ -51,6 +52,8 @@ namespace DataServiceLib
             modelBuilder.Entity<Title_Basics>().Property(x => x.Awards).HasColumnName("awards");
             modelBuilder.Entity<Title_Basics>().Property(x => x.Plot).HasColumnName("plot");
 
+            modelBuilder.Entity<TitleGenre>().ToTable("title_basics_genres");
+            modelBuilder.Entity<TitleGenre>().Property(x => x.Genre).HasColumnName("genres");
         }
 
         private static void UsersModel(ModelBuilder modelBuilder)

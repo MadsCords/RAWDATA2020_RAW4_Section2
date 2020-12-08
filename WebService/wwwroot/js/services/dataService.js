@@ -17,6 +17,7 @@
     }
     return {
         getTitles,
-        getTitle
+        getTitle,
+        currentUsername
     }
 });

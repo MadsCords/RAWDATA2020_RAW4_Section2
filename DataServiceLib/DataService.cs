@@ -11,17 +11,27 @@ namespace DataServiceLib
 {
     public class DataService : IDataService
     {
-      
+
         public DataService()
         {
-           
+
         }
-        public IList<Title_Basics> GetTitles(int? userid)
+        public IList<TitleBasicsList> GetTitles(int? userid, int page, int pageSize)
         {
             var ctx = new ImdbDatabase();
             if (ctx.Users.FirstOrDefault(x => x.Userid == userid) == null)
                 throw new ArgumentException("User not found");
-            return ctx.Title_basics.ToList();
+            return ctx
+                .Title_basics
+                //.Include(x=> x.TitleGenre)
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .Select(x => new TitleBasicsList {
+                    Tconst = x.Tconst,
+                    PrimaryTitle = x.PrimaryTitle,
+                    //Genre = x.Genre
+                })
+                .ToList();
         }
         public Title_Basics GetTitle(int? userid, string tconst)
         {
@@ -29,6 +39,12 @@ namespace DataServiceLib
             if (ctx.Users.FirstOrDefault(x => x.Userid == userid) == null)
                 throw new ArgumentException("User not found");
             return ctx.Title_basics.FirstOrDefault(x => x.Tconst == tconst);
+        }
+
+        public int NumberOfMovies()
+        {
+            using var ctx = new ImdbDatabase();
+            return ctx.Title_basics.Count();
         }
         public IList<Users> GetUsers()
         {
