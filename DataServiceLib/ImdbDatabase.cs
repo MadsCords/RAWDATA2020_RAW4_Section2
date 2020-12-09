@@ -10,11 +10,12 @@ namespace DataServiceLib
     public class ImdbDatabase : DbContext
     {
 
-        // public static readonly ILoggerFactory MyLoggerFactory
-        //   = LoggerFactory.Create(builder => { builder.AddConsole(); });
+         public static readonly ILoggerFactory MyLoggerFactory
+           = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         public DbSet<Title_Basics> Title_basics { get; set; }
-        public DbSet<TitleBasicsList> TitleLists { get; set; }
+        public DbSet<TitleGenre> TitleGenre { get; set; }
+
         public DbSet<Users> Users { get; set; }
         //public DbSet<Users> UserId { get; set; }
         public DbSet<Name_Basics> Names { get; set; }
@@ -24,7 +25,7 @@ namespace DataServiceLib
         public DbSet<Users_SearchHistory> SearchHistory { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           // optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
             optionsBuilder.UseNpgsql("host = localhost; db = imdb; uid = postgres; pwd =1234qwer");
         }
 
@@ -52,8 +53,11 @@ namespace DataServiceLib
             modelBuilder.Entity<Title_Basics>().Property(x => x.Awards).HasColumnName("awards");
             modelBuilder.Entity<Title_Basics>().Property(x => x.Plot).HasColumnName("plot");
 
+            modelBuilder.Entity<TitleGenre>().HasKey(x => new { x.Tconst, x.Genre });
             modelBuilder.Entity<TitleGenre>().ToTable("title_basics_genres");
             modelBuilder.Entity<TitleGenre>().Property(x => x.Genre).HasColumnName("genres");
+            modelBuilder.Entity<TitleGenre>().Property(x => x.Tconst).HasColumnName("tconst");
+            modelBuilder.Entity<TitleGenre>().HasOne<Title_Basics>(x => x.TitleBasic).WithMany(y => y.Genres);
         }
 
         private static void UsersModel(ModelBuilder modelBuilder)

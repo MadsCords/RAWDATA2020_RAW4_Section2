@@ -47,7 +47,7 @@ namespace WebService.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTitles(int? userid, int page = 0, int pageSize = 10)
+        public IActionResult GetTitles(int page = 0, int pageSize = 10)
         {
             
             //if (Program.CurrentUser == null)
@@ -61,7 +61,7 @@ namespace WebService.Controllers
                 //var Titles = _dataService.GetTitles(1);
                 //return Ok(_mapper.Map<IEnumerable<TitleDto>>(Titles));
 
-                var items = _dataService.GetTitles(userid, page, pageSize);
+                var items = _dataService.GetTitles(page, pageSize);
 
                 var numberOfMovies = _dataService.NumberOfMovies();
 

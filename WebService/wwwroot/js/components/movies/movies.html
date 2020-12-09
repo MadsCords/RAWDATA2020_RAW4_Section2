@@ -17,7 +17,8 @@
          </ul>
     </div>
 </div>-->
-<input data-bind />
+<input data-bind="value: searchstring" />
+<button data-bind="click: doSearch">Search</button>
 <div >
     <ul data-bind="foreach: searchTitle">
         <li data-bind="text: primaryTitle">SearchTitle: </li>

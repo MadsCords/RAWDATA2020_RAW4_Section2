@@ -18,7 +18,7 @@
     }
 
     let searchTitle = (userid, searchstring, callback) => {
-        fetch('api/Title/' + userid + searchstring)
+        fetch('api/search/' + userid + '/' + searchstring)
             .then(response => response.json())
             .then(callback);
     }

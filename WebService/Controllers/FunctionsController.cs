@@ -21,7 +21,7 @@ namespace WebService.Controllers
             _dataService = dataService;
             _mapper = mapper;
         }
-        [HttpGet("searchstring/{userid}/{searchstring}")]
+        [HttpGet("{userid}/{searchstring}")]
         public IActionResult SearchTitle(int userid, string searchstring)
         {
             var titlesearch = _dataService.SearchTitle(userid,searchstring);

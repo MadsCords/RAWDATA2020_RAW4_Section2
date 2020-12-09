@@ -11,6 +11,7 @@ namespace DataServiceLib
         [Key]
         public string Tconst { get; set; }
         public string PrimaryTitle { get; set; }
-        public string Genre { get; set; }
+        public IList<string> Genres { get; set; }
+
     }
 }

@@ -7,8 +7,8 @@ namespace DataServiceLib
 {
     public class TitleGenre
     {
-        [Key]
         public string Tconst { get; set; }
         public string Genre { get; set; }
+        public Title_Basics TitleBasic { get; set; }
     }
 }

@@ -1,23 +1,30 @@
-﻿define(['knockout','viewModel','dataService'], (ko, vm, ds) => {
+﻿define(['knockout','viewModel','dataservice'], (ko, vm, ds) => {
     return function (params) {
         //debugger;
-       // let movieTitles = ko.observableArray([]);
+        let movieTitles = ko.observableArray([]);
         let searchTitle = ko.observableArray([]);
         let selectedMovie = ko.observable();
+        let userid = 1;
+        let searchstring = ko.observable('hej');
         let selectMovie = movieTitle => {
             console.log(movieTitle);
             selectedMovie(movieTitle);
 
             
         }
+        let doSearch = () => {
+              ds.searchTitle(userid, searchstring(), function (data) { searchTitle(data) });
 
-        ds.searchTitle(userid + searchstring, function (data) { searchTitle });
+        };
 
-        //vm.getTitles(function (data) { movieTitles(data) });
+        vm.getTitles(function (data) { movieTitles(data) });
         return {
-            //movieTitles,
+            movieTitles,
             selectedMovie,
-            selectMovie
+            selectMovie,
+            searchTitle,
+            searchstring,
+            doSearch
         };
     }
 });

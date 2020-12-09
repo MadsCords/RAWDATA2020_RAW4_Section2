@@ -16,22 +16,23 @@ namespace DataServiceLib
         {
 
         }
-        public IList<TitleBasicsList> GetTitles(int? userid, int page, int pageSize)
+        public IList<TitleBasicsList> GetTitles(int page, int pageSize)
         {
             var ctx = new ImdbDatabase();
-            if (ctx.Users.FirstOrDefault(x => x.Userid == userid) == null)
-                throw new ArgumentException("User not found");
-            return ctx
+           // ctx.TitleGenre.Where
+            var result = ctx
                 .Title_basics
-                //.Include(x=> x.TitleGenre)
+                .Include(x=> x.Genres)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .Select(x => new TitleBasicsList {
                     Tconst = x.Tconst,
                     PrimaryTitle = x.PrimaryTitle,
-                    //Genre = x.Genre
+                    Genres = x.Genres.Select(y => y.Genre).ToList()
                 })
                 .ToList();
+            
+            return result;
         }
         public Title_Basics GetTitle(int? userid, string tconst)
         {
