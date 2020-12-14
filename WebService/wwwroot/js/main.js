@@ -25,6 +25,11 @@ require(['knockout', 'text'], (ko) => {
         template: { require: "text!components/home/home.html" }
     });
 
+    ko.components.register('actors', {
+        viewModel: { require: "components/actors/actors" },
+        template: { require: "text!components/actors/actors.html" }
+    });
+
 });
 
 require(['knockout', 'viewModel', 'bootstrap'], (ko, vm) => {

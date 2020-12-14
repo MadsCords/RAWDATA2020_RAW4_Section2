@@ -6,5 +6,63 @@
 </head>
 <body>
 
+    <div>
+        Page size: <select data-bind="options: pageSizes, selectedOptions: selectedPageSize"></select>
+    </div>
+    <!-- SHOWING FULL ACTORS FROM DATABASE TABLE-->
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Actor Name</th>
+                    <th scope="col">Birthyear</th>
+                    <th scope="col">Deathyear</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: actors">
+                <tr>
+                    <!--<th scope="row"></th>-->
+                    <td data-bind="text: primaryName"></td>
+                    <td data-bind="text: birthyear"></td>
+                    <td data-bind="text: deathyear"></td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="navigation-buttons">
+        <button data-bind="click: showPrev, enable: enablePrev">Prev</button>
+        <button data-bind="click: showNext, enable: enableNext">Next</button>
+    </div>
+    <br />
+    <!-- SEARCHING ACTOR NAME FROM DATABASE TABLE-->
+    <div>
+        <p>Here you are able to search for an actors name, and check their professions.</p>
+        <label for="actorSearch">Actor name:</label>
+        <input id="actorSearch" data-bind="value: searchstring" />
+        <button data-bind="click: doSearch">Search</button>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Actor Name</th>
+                    <th scope="col">Profession</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: searchActor">
+                <tr>
+                    <!--<th scope="row"></th>-->
+                    <td data-bind="text: primaryName"></td>
+                    <td data-bind="text: primaryProfession"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script data-main="js/main.js" src="js/lib/require.js/require.min.js"></script>
 </body>
 </html>

@@ -46,7 +46,7 @@ namespace WebService.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet(Name = nameof(GetTitles))]
         public IActionResult GetTitles(int page = 0, int pageSize = 10)
         {
             
@@ -100,76 +100,29 @@ namespace WebService.Controllers
             //    return Unauthorized();
             //}
         }
-
-        //[HttpGet("{id}")]
-        //public IActionResult GetCategory(int id)
-        //{
-        //    var category = _dataService.GetCategory(id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(_mapper.Map<CategoryDto>(category));
-        //}
-
-        //[HttpPost]
-        //public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        //{
-        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
-
-        //    _dataService.CreateCategory(category);
-
-        //    return Created("", category);
-        //}
-
-        //[HttpPut("{id}")]
-        //public IActionResult UpdateCategory(int id, CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        //{
-        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
-
-        //    if (!_dataService.UpdateCategory(category))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return NoContent();
-
-        //}
-
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteCategory(int id)
-        //{
-        //    if (!_dataService.DeleteCategory(id))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return NoContent();
-        //}
-
         /**
          * 
          *  Dto Helper
          *  
          */
-        //private TitleDto CreateTitleDto(Title_Basics title)
+        //TitleDto CreateTitleDto(Title_Basics title)
         //{
-        //    return new TitleDto
-        //    {
-        //        Url = Url.Link(nameof(GetTitle), new { tconst = title.Tconst}),
-        //        TitleType = title.TitleType,
-        //        PrimaryTitle = title.PrimaryTitle,
-        //        OriginalTitle = title.OriginalTitle,
-        //        IsAdult = title.IsAdult,
-        //        StartYear = title.StartYear,
-        //        EndYear = title.EndYear,
-        //        RuntimeMinutes = title.RuntimeMinutes,
-        //        Poster = title.Poster,
-        //        Awards = title.Awards,
-        //        Plot = title.Plot
+        //    var dto = _mapper.Map<TitleDto>(title);
+        //    dto.Url = Url.Link(nameof(GetTitles), new { tconst = title.Tconst });
 
-        //    };
+        //        //TitleType = title.TitleType,
+        //        //PrimaryTitle = title.PrimaryTitle,
+        //        //OriginalTitle = title.OriginalTitle,
+        //        //IsAdult = title.IsAdult,
+        //        //StartYear = title.StartYear,
+        //        //EndYear = title.EndYear,
+        //        //RuntimeMinutes = title.RuntimeMinutes,
+        //        //Poster = title.Poster,
+        //        //Awards = title.Awards,
+        //        //Plot = title.Plot
+
+
+        //        return dto;
         //}
     }
 }

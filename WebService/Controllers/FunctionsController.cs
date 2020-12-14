@@ -22,9 +22,9 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
         [HttpGet("{userid}/{searchstring}")]
-        public IActionResult SearchTitle(int userid, string searchstring)
+        public IActionResult SearchTitle(int userid, string searchstring, int page = 0, int pageSize = 10)
         {
-            var titlesearch = _dataService.SearchTitle(userid,searchstring);
+            var titlesearch = _dataService.SearchTitle(userid,searchstring, page, pageSize);
 
             return Ok(_mapper.Map<IEnumerable<FunctionsDto>>(titlesearch));
         }
@@ -36,6 +36,13 @@ namespace WebService.Controllers
             return Ok(_mapper.Map<IEnumerable<StructuredSearchDto>>(stringsearch));
         }
 
+        [HttpGet("actor/{searchstring}")]
+        public IActionResult SearchActor(string searchstring)
+        {
+            var actorsearch = _dataService.SearchActor(searchstring);
+
+            return Ok(_mapper.Map<IEnumerable<SearchActorFunction>>(actorsearch));
+        }
     }
 
 }

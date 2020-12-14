@@ -1,6 +1,6 @@
 ﻿define(['knockout'], (ko) => {
     let currentComponent = ko.observable("home");
-    let menuElements = ["Home", "Movies"];
+    let menuElements = ["Home", "Movies", "Actors"];
     let titles = ko.observableArray();
     //let selectedComponent = ko.observable('movies')
     let changeContent = element => {
@@ -16,12 +16,7 @@
 
     }
 
-    let getTitles = (callback) => {
-        fetch('api/Titles')
-            .then(response => response.json())
-            .then(callback);
-            
-    };
+   
     //getTitles(x => {
     //    titles(x)
     //});
@@ -31,8 +26,7 @@
         menuElements,
         changeContent,
         isActive,
-        titles,
-        getTitles
+        titles
         //selectedComponent
 
     };

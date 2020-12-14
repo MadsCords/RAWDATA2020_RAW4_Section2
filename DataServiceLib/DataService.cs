@@ -47,6 +47,11 @@ namespace DataServiceLib
             using var ctx = new ImdbDatabase();
             return ctx.Title_basics.Count();
         }
+        public int NumberOfActors()
+        {
+            using var ctx = new ImdbDatabase();
+            return ctx.Names.Count();
+        }
         public IList<Users> GetUsers()
         {
             var ctx = new ImdbDatabase();
@@ -57,12 +62,18 @@ namespace DataServiceLib
             var ctx = new ImdbDatabase();
             return ctx.Users.FirstOrDefault(x => x.Username == username);
         }
-        public IList<Name_Basics> GetNames()
+        public IList<Name_Basics> GetNames(int page = 0, int pageSize = 10)
         {
             var ctx = new ImdbDatabase();
-            return ctx.Names.ToList();
+            var result = ctx
+                .Names
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return result;
         }
-        public IList<Users_SearchHistory> GetSearchHistory(int? userid)
+            public IList<Users_SearchHistory> GetSearchHistory(int? userid)
         {
             var ctx = new ImdbDatabase();
             return ctx.SearchHistory.ToList();
@@ -100,11 +111,19 @@ namespace DataServiceLib
 
             //}
 
-        public IList<SearchTitleFunction> SearchTitle(int userid, string searchentry)
+        public IList<SearchTitleFunction> SearchTitle(int userid, string searchentry, int page, int pageSize)
         {
             var ctx = new ImdbDatabase();
-            var result = ctx.SearchTitle.FromSqlInterpolated($"select * from string_search({userid},{searchentry})");
+            var result = ctx.SearchTitle.FromSqlInterpolated($"select * from string_search({userid},{searchentry},{page},{pageSize})");
             return result.ToList();
+        }
+
+        public IList<SearchActorFunction> SearchActor(string searchentry)
+        {
+            var ctx = new ImdbDatabase();
+            var result = ctx.SearchActor.FromSqlInterpolated($"select * from search_name({searchentry})");
+            return result.ToList();
+
         }
 
         public IList<StructuredSearchFunction> StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname)

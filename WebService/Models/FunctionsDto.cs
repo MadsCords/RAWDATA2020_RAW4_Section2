@@ -20,4 +20,10 @@ namespace WebService.Models
         public string EntryCharacters { get; set; }
         public string EntryName { get; set; }
     }
+
+    public class SearchActorDto
+    {
+        public string PrimaryName { get; set; }
+        public string PrimaryProfession { get; set; }
+    }
 }

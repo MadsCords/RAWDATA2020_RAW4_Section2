@@ -6,13 +6,15 @@ namespace DataServiceLib
     {
         IList<TitleBasicsList> GetTitles(int page, int pageSize);
         int NumberOfMovies();
+        int NumberOfActors();
         Title_Basics GetTitle(int? userid, string tconst);
         IList<Users> GetUsers();
         //IList<Users> GetUserId(int id);
-        IList<Name_Basics> GetNames();
+        IList<Name_Basics> GetNames(int page, int pageSize);
         IList<Users_SearchHistory> GetSearchHistory(int? userid);
         //IList<Name_Basics> GetNameId(int id);
-        IList<SearchTitleFunction> SearchTitle(int userid, string searchentry);
+        IList<SearchTitleFunction> SearchTitle(int userid, string searchentry, int page, int pageSize);
+        IList<SearchActorFunction> SearchActor(string searchentry);
         IList<StructuredSearchFunction> StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname);
         //Product GetProduct(int id);
         Users CreateUser(Users user); //string firstname, string lastname, string username, string password = null, string salt = null

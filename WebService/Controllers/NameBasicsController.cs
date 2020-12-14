@@ -12,7 +12,7 @@ using WebService.Models.Profiles;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/Name")]
+    [Route("api/Actors")]
     public class NameBasicsController : ControllerBase
     {
         IDataService _dataService;
@@ -24,13 +24,40 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IActionResult GetNames()
+        [HttpGet(Name = nameof(GetNames))]
+        public IActionResult GetNames(int page = 0, int pageSize = 10)
         {
+            var items = _dataService.GetNames(page, pageSize);
 
-            var Names = _dataService.GetNames();
+            var numberOfActors = _dataService.NumberOfActors();
 
-            return Ok(_mapper.Map<IEnumerable<NameBasicsDto>>(Names));
+            var pages = (int)Math.Ceiling((double)numberOfActors/ pageSize);
+
+            var prev = (string)null;
+            if (page > 0)
+            {
+                prev = Url.Link(nameof(GetNames), new { page = page - 1, pageSize });
+            }
+
+            var next = (string)null;
+            if (page < pages - 1)
+            {
+                next = Url.Link(nameof(GetNames), new { page = page + 1, pageSize });
+            }
+
+
+            var result = new
+            {
+                pageSizes = new int[] { 5, 10, 15, 20 },
+                count = numberOfActors,
+                pages,
+                prev,
+                next,
+                items
+            };
+
+            return Ok(result);
+
         }
 
         //[HttpGet("{id}")]

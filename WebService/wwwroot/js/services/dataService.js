@@ -1,15 +1,31 @@
 ﻿define(['knockout'], (ko) => {
-    let currentUsername = ko.observable('hej');
-    let myHeaders = new Headers();
+    let currentUsername = ko.observable();
     let searchstring = ko.observable()
-    myHeaders.append('Authorization', currentUsername);
-   
-    let getTitles = (callback) => {
-        fetch('api/Titles', myHeaders)
-        
-            .then(response => response.json())
-            .then(callback);
-    } 
+
+    const titlesApiUrl = "api/Titles";
+    const actorsApiUrl = "api/Actors";
+
+    let getJson = (url, callback) => {
+        fetch(url).then(response => response.json()).then(callback);
+    };
+
+    let getTitles = (url, callback) => {
+        if (url == undefined) {
+            url = titlesApiUrl;
+        }
+        getJson(url, callback);
+    };
+
+    let getTitlesUrlWithPagesSize = size => titlesApiUrl + "?pageSize=" + size;
+
+    let getActors = (url, callback) => {
+        if (url == undefined) {
+            url = actorsApiUrl;
+        }
+        getJson(url, callback);
+    };
+
+    let getActorsUrlWithPagesSize = size => actorsApiUrl + "?pageSize=" + size;
 
     let getTitle = (tconst, callback) => {
         fetch('api/Title/' + tconst)
@@ -22,10 +38,21 @@
             .then(response => response.json())
             .then(callback);
     }
+
+    let searchActor = (searchstring, callback) => {
+        fetch('api/search/actor/' + searchstring)
+            .then(response => response.json())
+            .then(callback);
+    }
+
     return {
         getTitles,
+        getActors,
         getTitle,
         currentUsername,
-        searchTitle
+        searchTitle,
+        searchActor,
+        getTitlesUrlWithPagesSize,
+        getActorsUrlWithPagesSize
     }
 });
