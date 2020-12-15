@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        <div class="form-group">
+            <label for="username">Insert your username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" data-bind="value: username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Insert your password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" data-bind="value: password" required>
+        </div>
+        <div class="form-group">
+            <label for="firstName">Insert your firstname</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Firstname" data-bind="value: firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Insert your lastname</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Lastname" data-bind="value: lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="birthyear">Insert your birthyear</label>
+            <input type="text" class="form-control" id="birthyear" placeholder="Birthyear" data-bind="value: birthyear" required>
+        </div>
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-bind="click: createUser">Submit</button>
+    </form>
+
+
+
+
+
+    <script data-main="js/main.js" src="js/lib/require.js/require.min.js"></script>
+</body>
+</html>

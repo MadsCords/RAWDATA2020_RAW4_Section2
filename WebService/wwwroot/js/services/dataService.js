@@ -16,6 +16,13 @@
         getJson(url, callback);
     };
 
+    let verifyUser = (username, callback) => {
+        fetch('api/Users/' + username)
+            .then(response => callback(response.status === 200));
+    }
+
+    //let createUser = ()
+
     let getTitlesUrlWithPagesSize = size => titlesApiUrl + "?pageSize=" + size;
 
     let getActors = (url, callback) => {
@@ -30,7 +37,7 @@
     let getTitle = (tconst, callback) => {
         fetch('api/Title/' + tconst)
             .then(response => response.json())
-            .then(callback);
+            .then(data => callback(data));
     }
 
     let searchTitle = (userid, searchstring, callback) => {
@@ -53,6 +60,7 @@
         searchTitle,
         searchActor,
         getTitlesUrlWithPagesSize,
-        getActorsUrlWithPagesSize
+        getActorsUrlWithPagesSize,
+        verifyUser
     }
 });

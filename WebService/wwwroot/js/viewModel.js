@@ -1,6 +1,7 @@
-﻿define(['knockout'], (ko) => {
+﻿define(['knockout',], (ko) => {
+    let loggedIn = ko.observable(false);
     let currentComponent = ko.observable("home");
-    let menuElements = ["Home", "Movies", "Actors"];
+    let menuElements = ko.observableArray(["Home", "Movies", "Actors", 'Login', 'Signup']);
     let titles = ko.observableArray();
     //let selectedComponent = ko.observable('movies')
     let changeContent = element => {
@@ -16,7 +17,13 @@
 
     }
 
-   
+    loggedIn.subscribe(() => {
+        if (loggedIn() === true) {
+            menuElements.splice(3);
+            menuElements.push('MyProfile','Logout');
+        }
+    });
+
     //getTitles(x => {
     //    titles(x)
     //});
@@ -26,7 +33,8 @@
         menuElements,
         changeContent,
         isActive,
-        titles
+        titles,
+        loggedIn
         //selectedComponent
 
     };

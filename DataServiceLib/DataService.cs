@@ -62,6 +62,8 @@ namespace DataServiceLib
             var ctx = new ImdbDatabase();
             return ctx.Users.FirstOrDefault(x => x.Username == username);
         }
+
+
         public IList<Name_Basics> GetNames(int page = 0, int pageSize = 10)
         {
             var ctx = new ImdbDatabase();

@@ -8,6 +8,7 @@ require.config({
         bootstrap: "../css/lib/twitter-bootstrap/js/bootstrap.bundle.min",
         jquery: "lib/jquery/jquery.min",
         postman: "services/postman"
+        
     },
     shim: {
         bootstrap: ['jquery']
@@ -28,6 +29,21 @@ require(['knockout', 'text'], (ko) => {
     ko.components.register('actors', {
         viewModel: { require: "components/actors/actors" },
         template: { require: "text!components/actors/actors.html" }
+    });
+
+    ko.components.register('signup', {
+        viewModel: { require: "components/signup/signup" },
+        template: { require: "text!components/signup/signup.html" }
+    });
+
+    ko.components.register('login', {
+        viewModel: { require: "components/login/login" },
+        template: { require: "text!components/login/login.html" }
+    });
+
+    ko.components.register('myprofile', {
+        viewModel: { require: "components/myprofile/myprofile" },
+        template: { require: "text!components/myprofile/myprofile.html" }
     });
 
 });

@@ -32,7 +32,20 @@ namespace WebService.Controllers
 
             return Ok(_mapper.Map<IEnumerable<UsersDto>>(Users));
         }
-        
+
+        [HttpGet("{username}")]
+        public IActionResult GetUser(string username)
+        {
+
+            var user = _dataService.GetUser(username);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<UsersDto>(user));
+        }
+
         [HttpPost("createuser")]
         public IActionResult CreateUser(UserForCreationDto userCreationDto)
         {

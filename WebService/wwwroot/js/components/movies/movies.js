@@ -16,9 +16,7 @@
             console.log(movieTitle);
             selectedMovie(movieTitle);
         }
-
         
-
         let doSearch = () => {
               ds.searchTitle(userid, searchstring(), function (data) { searchTitle(data) });
         };
