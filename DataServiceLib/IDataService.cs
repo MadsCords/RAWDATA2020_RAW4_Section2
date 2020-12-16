@@ -17,7 +17,8 @@ namespace DataServiceLib
         IList<SearchActorFunction> SearchActor(string searchentry);
         IList<StructuredSearchFunction> StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname);
         //Product GetProduct(int id);
-        Users CreateUser(Users user); //string firstname, string lastname, string username, string password = null, string salt = null
-        Users GetUser(string username);
+        Users CreateUser(Users user); // = null, string salt = null
+        Users GetUser(string username, int userid);
+        IList<Users_SearchHistory> GetSearchHistory(int userid);
     }
 }

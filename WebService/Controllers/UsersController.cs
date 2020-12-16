@@ -33,11 +33,11 @@ namespace WebService.Controllers
             return Ok(_mapper.Map<IEnumerable<UsersDto>>(Users));
         }
 
-        [HttpGet("{username}")]
-        public IActionResult GetUser(string username)
+        [HttpGet("{username}/{userid}")]
+        public IActionResult GetUser(string username, int userid)
         {
 
-            var user = _dataService.GetUser(username);
+            var user = _dataService.GetUser(username, userid);
 
             if (user == null)
             {
@@ -46,10 +46,10 @@ namespace WebService.Controllers
             return Ok(_mapper.Map<UsersDto>(user));
         }
 
-        [HttpPost("createuser")]
-        public IActionResult CreateUser(UserForCreationDto userCreationDto)
+        [HttpPost("createuser")] 
+        public IActionResult CreateUser(UserForCreationDto userDto)
         {
-            var user = _mapper.Map<Users>(userCreationDto);
+            var user = _mapper.Map<Users>(userDto);
 
            var newUser =  _dataService.CreateUser(user);
 

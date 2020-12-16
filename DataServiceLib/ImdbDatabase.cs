@@ -83,6 +83,8 @@ namespace DataServiceLib
 
         private static void UsersSearchModel(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Users_SearchHistory>().HasKey(x => new { x.Userid, x.SearchDate });
             modelBuilder.Entity<Users_SearchHistory>().ToTable("users_searchhistory");
             modelBuilder.Entity<Users_SearchHistory>().Property(x => x.Userid).HasColumnName("userid");
             modelBuilder.Entity<Users_SearchHistory>().Property(x => x.SearchEntry).HasColumnName("searchentry");

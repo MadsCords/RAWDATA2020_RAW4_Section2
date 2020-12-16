@@ -43,6 +43,15 @@ namespace WebService.Controllers
 
             return Ok(_mapper.Map<IEnumerable<SearchActorFunction>>(actorsearch));
         }
+
+        [HttpGet("searchHistory/{userid}")]
+
+        public IActionResult SearchHistory(int userid)
+        {
+            var searchHistory = _dataService.GetSearchHistory(userid);
+
+            return Ok(_mapper.Map<IEnumerable<SearchHistoryDto>>(searchHistory));
+        }
     }
 
 }

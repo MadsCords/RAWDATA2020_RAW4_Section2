@@ -4,6 +4,7 @@
 
     const titlesApiUrl = "api/Titles";
     const actorsApiUrl = "api/Actors";
+    const searchHistoryApiUrl = "api/search/searchHistory/" + userid;
 
     let getJson = (url, callback) => {
         fetch(url).then(response => response.json()).then(callback);
@@ -16,12 +17,40 @@
         getJson(url, callback);
     };
 
-    let verifyUser = (username, callback) => {
-        fetch('api/Users/' + username)
-            .then(response => callback(response.status === 200));
+    let getSearchHistory = (url, callback) => {
+        if (url == undefined) {
+            url = searchHistoryApiUrl;
+        }
+        getJson(url, callback);
     }
 
-    //let createUser = ()
+    let verifyUser = (username, userid, callback) => {
+        fetch('api/Users/' + username + userid)
+            .then(response => callback(response.status === 200));
+       
+    }
+
+    let createUser = (user, callback) => {
+        fetch('api/Users/createuser', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+            .then(response => {
+                if (response.status > 299) {
+                    return callback(undefined);
+                }
+                return response.json();
+            })
+            .then(data => {
+                callback(data);
+            })
+            .catch((error) => {
+                callback(null);
+            });
+    }
 
     let getTitlesUrlWithPagesSize = size => titlesApiUrl + "?pageSize=" + size;
 
@@ -61,6 +90,8 @@
         searchActor,
         getTitlesUrlWithPagesSize,
         getActorsUrlWithPagesSize,
-        verifyUser
+        verifyUser,
+        createUser,
+        getSearchHistory
     }
 });

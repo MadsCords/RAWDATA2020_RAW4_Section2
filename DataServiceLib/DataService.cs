@@ -57,10 +57,10 @@ namespace DataServiceLib
             var ctx = new ImdbDatabase();
             return ctx.Users.ToList();
         }
-        public Users GetUser(string username)
+        public Users GetUser(string username, int userid)
         {
             var ctx = new ImdbDatabase();
-            return ctx.Users.FirstOrDefault(x => x.Username == username);
+            return ctx.Users.FirstOrDefault(x => x.Username == username && x.Userid == userid);
         }
 
 
@@ -92,10 +92,27 @@ namespace DataServiceLib
             //}
 
 
-            public Users CreateUser(Users user) //string firstname, string lastname, string username, string password = null, string salt = null
+        //    public Users CreateUser(Users user) //string firstname, string lastname, string username, string password = null, string salt = null , string username, string password, string firstname, string lastname, string birthyear
+        //{
+        //    var ctx = new ImdbDatabase();
+
+        //    var conn = (NpgsqlConnection)ctx.Database.GetDbConnection();
+        //    conn.Open();
+        //    var q = "select \"createUser\"('" + user.Username + "', '" + user.Password + "', '" + user.Firstname + "', '" + user.Lastname + "', '" + user.Birthyear + "')";
+        //    //Console.WriteLine(q);
+        //    var cmd = new NpgsqlCommand(q, conn);
+
+        //    cmd.ExecuteNonQuery();
+
+        //    return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
+
+        //}
+
+        public Users CreateUser(Users user) 
         {
             var ctx = new ImdbDatabase();
-
+            var findUser = ctx.Users.FirstOrDefault(x => x.Username == user.Username);
+            if (findUser != null) return null;
             var conn = (NpgsqlConnection)ctx.Database.GetDbConnection();
             conn.Open();
             var q = "select \"createUser\"('" + user.Username + "', '" + user.Password + "', '" + user.Firstname + "', '" + user.Lastname + "', '" + user.Birthyear + "')";
@@ -105,25 +122,37 @@ namespace DataServiceLib
             cmd.ExecuteNonQuery();
 
             return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
+  
 
         }
-            //public void DeleteUser()
-            //{
-            //var ctx = new ImdbDatabase();
 
-            //}
+
+        public IList<Users_SearchHistory> GetSearchHistory(int userid)
+        {
+            var ctx = new ImdbDatabase();
+
+            return ctx.SearchHistory.Where(x => x.Userid == userid).OrderByDescending(x => x.SearchDate).ToList();
+        }
+
+
+
+        //public void DeleteUser()
+        //{
+        //var ctx = new ImdbDatabase();
+
+        //}
 
         public IList<SearchTitleFunction> SearchTitle(int userid, string searchentry, int page, int pageSize)
         {
             var ctx = new ImdbDatabase();
-            var result = ctx.SearchTitle.FromSqlInterpolated($"select * from string_search({userid},{searchentry},{page},{pageSize})");
+            var result = ctx.SearchTitle.FromSqlInterpolated($"select * from string_search({userid},{searchentry.ToLower()},{page},{pageSize})");
             return result.ToList();
         }
 
         public IList<SearchActorFunction> SearchActor(string searchentry)
         {
             var ctx = new ImdbDatabase();
-            var result = ctx.SearchActor.FromSqlInterpolated($"select * from search_name({searchentry})");
+            var result = ctx.SearchActor.FromSqlInterpolated($"select * from search_name({searchentry.ToLower()})");
             return result.ToList();
 
         }

@@ -38,7 +38,7 @@ namespace WebService.Middleware
             var auth = context.Request.Headers["Authorization"].ToString();
             if(!string.IsNullOrEmpty(auth))
             {
-                Program.CurrentUser = _dataService.GetUser(auth.ToString());
+                //Program.CurrentUser = _dataService.GetUser(auth.ToString());
             }
             
 
