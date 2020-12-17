@@ -17,9 +17,7 @@ namespace DataServiceLib
         public DbSet<TitleGenre> TitleGenre { get; set; }
 
         public DbSet<Users> Users { get; set; }
-        //public DbSet<Users> UserId { get; set; }
         public DbSet<Name_Basics> Names { get; set; }
-        //public DbSet<Name_Basics> NameId { get; set; }
         public DbSet<SearchTitleFunction> SearchTitle { get; set; }
         public DbSet<SearchActorFunction> SearchActor { get; set; }
         public DbSet<StructuredSearchFunction> StructuredSearch { get; set; }

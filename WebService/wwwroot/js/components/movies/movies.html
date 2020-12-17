@@ -7,16 +7,6 @@
 </head>
 <body>
 
-
-    <!--<div data-bind="with: movies"></div>-->
-    <!--<div>
-        <div data-bind="foreach: movieTitles">
-             <ul data-bind="text: primaryTitle">
-                <li data-bind="text: primaryTitle, click: selectMovie"> </li>
-             </ul>
-        </div>
-    </div>-->
-
     <h2>Movie titles </h2>
     <div>
         Page size: <select data-bind="options: pageSizes, selectedOptions: selectedPageSize"></select>
@@ -30,7 +20,6 @@
         </thead>
         <tbody data-bind="foreach: movieTitles">
             <tr>
-                <!--<th scope="row"></th>-->
                 <td data-bind="text: primaryTitle"></td>
                 <td data-bind="text: genres"></td>
 
@@ -55,14 +44,11 @@
             <thead>
                 <tr>
                     <th scope="col">Movie Title</th>
-                    <!--<th scope="col">Profession</th>-->
                 </tr>
             </thead>
             <tbody data-bind="foreach: searchTitle">
                 <tr>
-                    <!--<th scope="row"></th>-->
                     <td data-bind="text: primaryTitle"></td>
-                    <!--<td data-bind="text: primaryProfession"></td>-->
                 </tr>
             </tbody>
         </table>

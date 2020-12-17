@@ -9,16 +9,13 @@ namespace DataServiceLib
         int NumberOfActors();
         Title_Basics GetTitle(int? userid, string tconst);
         IList<Users> GetUsers();
-        //IList<Users> GetUserId(int id);
         IList<Name_Basics> GetNames(int page, int pageSize);
         IList<Users_SearchHistory> GetSearchHistory(int? userid);
-        //IList<Name_Basics> GetNameId(int id);
         IList<SearchTitleFunction> SearchTitle(int userid, string searchentry, int page, int pageSize);
         IList<SearchActorFunction> SearchActor(string searchentry);
         IList<StructuredSearchFunction> StructuredSearch(int userid, string entrytitle, string entryplot, string entrycharacters, string entryname);
-        //Product GetProduct(int id);
-        Users CreateUser(Users user); // = null, string salt = null
-        Users GetUser(string username, int userid);
+        Users CreateUser(Users user);
+        Users GetUser(string username, string password);
         IList<Users_SearchHistory> GetSearchHistory(int userid);
     }
 }

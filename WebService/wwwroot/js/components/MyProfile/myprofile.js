@@ -1,24 +1,19 @@
-﻿define(['knockout','dataservice'], (ko,ds) => {
+﻿define(['knockout','dataservice', 'viewModel'], (ko,ds,vm) => {
     return function (params) {
 
-        let userid = ko.observable();
-        let searchEntry = ko.observable();
-        let searchDate = ko.observable();
+        let userid = vm.user().userid;
+        let searchHistory = ko.observableArray();
 
-
-
-
-        let getData = url => {
-            ds.getSearchHistory(url, data => {
-                userid(data.userid);
-                searchEntry(data.searchEntry);
-                searchDate(data.searchDate);
+        let getData =(userid, url) => {
+            ds.getSearchHistory(userid, url, data => {
+                searchHistory(data);
 
             });
         }
-
+        getData(userid);
         return {
-            getData
+            searchHistory,
+            user: vm.user()
 
         };
     }

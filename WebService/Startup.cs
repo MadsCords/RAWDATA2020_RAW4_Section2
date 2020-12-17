@@ -41,9 +41,6 @@ namespace WebService
 
             app.UseFileServer();
             app.UseRouting();
-
-            app.UseAuth();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

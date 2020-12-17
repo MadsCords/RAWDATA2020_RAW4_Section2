@@ -19,7 +19,6 @@ namespace DataServiceLib
         public IList<TitleBasicsList> GetTitles(int page, int pageSize)
         {
             var ctx = new ImdbDatabase();
-           // ctx.TitleGenre.Where
             var result = ctx
                 .Title_basics
                 .Include(x=> x.Genres)
@@ -57,10 +56,10 @@ namespace DataServiceLib
             var ctx = new ImdbDatabase();
             return ctx.Users.ToList();
         }
-        public Users GetUser(string username, int userid)
+        public Users GetUser(string username, string password)
         {
             var ctx = new ImdbDatabase();
-            return ctx.Users.FirstOrDefault(x => x.Username == username && x.Userid == userid);
+            return ctx.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
         }
 
 
@@ -81,32 +80,6 @@ namespace DataServiceLib
             return ctx.SearchHistory.ToList();
 
         }
-            //public IList<Name_Basics> GetNameId(int id)
-            //{
-            //    var ctx = new ImdbDatabase();
-            //    return ctx.NameId.ToList();
-            //}
-            //public Category GetCategory(int id)
-            //{
-            //    return _categories.FirstOrDefault(x => x.Id == id);
-            //}
-
-
-        //    public Users CreateUser(Users user) //string firstname, string lastname, string username, string password = null, string salt = null , string username, string password, string firstname, string lastname, string birthyear
-        //{
-        //    var ctx = new ImdbDatabase();
-
-        //    var conn = (NpgsqlConnection)ctx.Database.GetDbConnection();
-        //    conn.Open();
-        //    var q = "select \"createUser\"('" + user.Username + "', '" + user.Password + "', '" + user.Firstname + "', '" + user.Lastname + "', '" + user.Birthyear + "')";
-        //    //Console.WriteLine(q);
-        //    var cmd = new NpgsqlCommand(q, conn);
-
-        //    cmd.ExecuteNonQuery();
-
-        //    return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
-
-        //}
 
         public Users CreateUser(Users user) 
         {
@@ -116,14 +89,11 @@ namespace DataServiceLib
             var conn = (NpgsqlConnection)ctx.Database.GetDbConnection();
             conn.Open();
             var q = "select \"createUser\"('" + user.Username + "', '" + user.Password + "', '" + user.Firstname + "', '" + user.Lastname + "', '" + user.Birthyear + "')";
-            //Console.WriteLine(q);
             var cmd = new NpgsqlCommand(q, conn);
 
             cmd.ExecuteNonQuery();
 
             return ctx.Users.FirstOrDefault(x => x.Username == user.Username);
-  
-
         }
 
 
@@ -133,14 +103,6 @@ namespace DataServiceLib
 
             return ctx.SearchHistory.Where(x => x.Userid == userid).OrderByDescending(x => x.SearchDate).ToList();
         }
-
-
-
-        //public void DeleteUser()
-        //{
-        //var ctx = new ImdbDatabase();
-
-        //}
 
         public IList<SearchTitleFunction> SearchTitle(int userid, string searchentry, int page, int pageSize)
         {

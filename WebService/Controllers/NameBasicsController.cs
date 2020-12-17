@@ -59,52 +59,5 @@ namespace WebService.Controllers
             return Ok(result);
 
         }
-
-        //[HttpGet("{id}")]
-        //public IActionResult GetNameId(int id)
-        //{
-        //    var name = _dataService.GetNameId(id);
-        //    if (name == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(_mapper.Map<NameBasicsDto>(name));
-        //}
-
-        //[HttpPost]
-        //public IActionResult CreateCategory(CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        //{
-        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
-
-        //    _dataService.CreateCategory(category);
-
-        //    return Created("", category);
-        //}
-
-        //[HttpPut("{id}")]
-        //public IActionResult UpdateCategory(int id, CategoryForCreationOrUpdateDto categoryOrUpdateDto)
-        //{
-        //    var category = _mapper.Map<Category>(categoryOrUpdateDto);
-
-        //    if (!_dataService.UpdateCategory(category))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return NoContent();
-
-        //}
-
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteCategory(int id)
-        //{
-        //    if (!_dataService.DeleteCategory(id))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return NoContent();
-        //}
     }
 }

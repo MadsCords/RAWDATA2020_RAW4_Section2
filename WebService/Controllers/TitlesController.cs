@@ -100,29 +100,5 @@ namespace WebService.Controllers
             //    return Unauthorized();
             //}
         }
-        /**
-         * 
-         *  Dto Helper
-         *  
-         */
-        //TitleDto CreateTitleDto(Title_Basics title)
-        //{
-        //    var dto = _mapper.Map<TitleDto>(title);
-        //    dto.Url = Url.Link(nameof(GetTitles), new { tconst = title.Tconst });
-
-        //        //TitleType = title.TitleType,
-        //        //PrimaryTitle = title.PrimaryTitle,
-        //        //OriginalTitle = title.OriginalTitle,
-        //        //IsAdult = title.IsAdult,
-        //        //StartYear = title.StartYear,
-        //        //EndYear = title.EndYear,
-        //        //RuntimeMinutes = title.RuntimeMinutes,
-        //        //Poster = title.Poster,
-        //        //Awards = title.Awards,
-        //        //Plot = title.Plot
-
-
-        //        return dto;
-        //}
     }
 }

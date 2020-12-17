@@ -4,7 +4,7 @@
 
     const titlesApiUrl = "api/Titles";
     const actorsApiUrl = "api/Actors";
-    const searchHistoryApiUrl = "api/search/searchHistory/" + userid;
+    const searchHistoryApiUrl = "api/search/searchHistory/";
 
     let getJson = (url, callback) => {
         fetch(url).then(response => response.json()).then(callback);
@@ -17,22 +17,33 @@
         getJson(url, callback);
     };
 
-    let getSearchHistory = (url, callback) => {
+    let getSearchHistory = (userid, url, callback) => {
         if (url == undefined) {
-            url = searchHistoryApiUrl;
+            url = searchHistoryApiUrl + userid;
         }
         getJson(url, callback);
     }
 
-    let verifyUser = (username, userid, callback) => {
-        fetch('api/Users/' + username + userid)
-            .then(response => callback(response.status === 200));
-       
+    let verifyUser = (username, password, callback) => {
+        fetch('api/Users/', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        }).
+            then(response => {
+                if (response.status === 404) return undefined;
+                return response.json();
+
+            }).then(callback);
+            
+    
     }
 
     let createUser = (user, callback) => {
         fetch('api/Users/createuser', {
-            method: 'POST', // or 'PUT'
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
