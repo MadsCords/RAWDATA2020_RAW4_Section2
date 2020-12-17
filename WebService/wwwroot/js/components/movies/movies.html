@@ -11,6 +11,7 @@
     <div>
         Page size: <select data-bind="options: pageSizes, selectedOptions: selectedPageSize"></select>
     </div>
+    <!-- SHOWING FULL MOVIELIST FROM DATABASE TABLE-->
     <table class="table">
         <thead>
             <tr>
@@ -32,7 +33,7 @@
         <button data-bind="click: showNext, enable: enableNext">Next</button>
     </div>
     <br />
-    <!-- SEARCHING ACTOR NAME FROM DATABASE TABLE-->
+    <!-- SEARCHING MOVIE TITLE FROM DATABASE TABLE //// THIS ONLY POSSIBLE IF YOU'RE LOGGED IN, AS THE FUNCTION TAKES A USERID-->
     <div>
         <p>Here you can search for a specific movie title.</p>
         <label for="searchTitle">Movie title</label>
@@ -53,7 +54,7 @@
             </tbody>
         </table>
     </div>
-  
+
     <script data-main="js/main.js" src="js/lib/require.js/require.min.js"></script>
 </body>
 </html>

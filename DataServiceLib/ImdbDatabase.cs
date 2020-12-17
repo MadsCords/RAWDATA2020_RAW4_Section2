@@ -25,7 +25,7 @@ namespace DataServiceLib
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLoggerFactory(MyLoggerFactory);
-            optionsBuilder.UseNpgsql("host = localhost; db = imdb; uid = postgres; pwd =1234qwer");
+            optionsBuilder.UseNpgsql("host = rawdata.ruc.dk; db = raw4; uid = raw4; pwd =YGAvOMIt");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
